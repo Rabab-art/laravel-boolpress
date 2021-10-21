@@ -39,6 +39,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        
         $post = new Post();
         $post->fill($data);
         $post->slug = Str::slug($post, '-');

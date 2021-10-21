@@ -5,23 +5,27 @@
         <header>
             <h1>Crea un nuovo post</h1>
         </header>
-        <section id="">
-            <form>
+        <section id="form">
+            <form  method="POST" action="{{route('admin.posts.store')}}">
+                @csrf
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Email address</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                  <label for="title">Titolo</label>
+                  <input type="text" class="form-control" id="title" placeholder="scrivi" required>
+        
+                </div>
+               
+                <div class="form-group">
+                  <label for="content">Contenuto del post</label>
+                  <textarea class="form-control" id="content" name="content" rows="5"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <label for="image">Immagine</label>
+                    <input type="text" class="form-control" id="image" name="image" placeholder="Inserisci l'url di un'immagine">
                   </div>
-               
-               
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Example textarea</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
+
+                  <button type="submit" class="btn btn-success">Salva</button>
               </form>
         </section>
+
     </div>
 @endsection

@@ -15,8 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post= Post::paginate(5);
-        return view('admin.posts.index',compact('posts'));
+        $post = Post::paginate(5);
+        return view('admin.posts.index', compact('posts'));
     }
     /**
      * Show the form for creating a new resource.
@@ -45,9 +45,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -81,6 +81,5 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        
     }
 }

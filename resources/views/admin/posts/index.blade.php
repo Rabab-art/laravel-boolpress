@@ -3,31 +3,39 @@
 @section( 'content')
 
 <div class="container">
+    @if(session('alert-message'))
+     <div class="alert alert-{{ session('alert-type')}}">
+    {{ session('alert-message')}}</div>
+        
+    @endif
     <header class="my-5 d-flex justify-content-between align-items-center">
-        <h1>I mie post</h1>
-        <a href="{{ route ('admin.posts.create')}}" class="btn btn-success"></a>
+        <h1 class="my-5">I mie post</h1>
+        <a href="{{ route ('admin.posts.create')}}" class="btn btn-success">Nuovo Post</a>
     </header>
 
-    <table class="table table-dark">
+    <table class="table">
         <thead>
             <tr>
-                <th class="col"> Titolo</th>
-                <th class="col"> Scritto il </th>
-                <th class="col"> </th>
+                <th scope="col"> Titolo</th>
+                <th scope="col"> Scritto il </th>
+                <th scope="col"> </th>
             </tr>
         </thead>
         <tbody>
             @forelse($posts as $post)
             <tr>
                 <td>{{ $post->title}}</td>
-                <td>{{ $post->getFormattedDtae('created_at')}}</td>
-                <td><a href="{{ route ('admin.posts.show',$post->id)}}" class="btn btn-primay">Vai</a></td>
-                <td><a href="{{ route ('admin.posts.edit',$post->id)}}" class="btn btn-primay">Modifica</a></td>
-            <form action="{{ route ('admin.posts.destroy', $post->id)}}" method="post">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger ml-2">Elimina</button>
-            </form>
+                <td>{{ $post->getFormattedDate('created_at')}}</td>
+                <td><a href="{{ route ('admin.posts.show',$post->id)}}" class="btn btn-primary">Vai</a></td>
+                <td><a href="{{ route ('admin.posts.edit',$post->id)}}" class="btn btn-warning ml-2">Modifica</a></td>
+                <td>
+                    <form action="{{ route ('admin.posts.destroy', $post->id)}}" method="post">
+
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger ml-2">Elimina</button>
+                    </form>
+                </td>
             </tr>
 
             @empty
@@ -39,4 +47,7 @@
             @endforelse
         </tbody>
     </table>
+    <footer class="d-flex justify-content-end">
+        {{$posts->links()}}
+    </footer>
 </div>

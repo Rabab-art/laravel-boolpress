@@ -4,9 +4,9 @@
 
 <div class="container">
     @if(session('alert-message'))
-     <div class="alert alert-{{ session('alert-type')}}">
-    {{ session('alert-message')}}</div>
-        
+    <div class="alert alert-{{ session('alert-type')}}">
+        {{ session('alert-message')}}</div>
+
     @endif
     <header class="my-5 d-flex justify-content-between align-items-center">
         <h1 class="my-5">I mie post</h1>
@@ -24,12 +24,13 @@
         <tbody>
             @forelse($posts as $post)
             <tr>
+                <td scope="row">{{$post->id}}#</td>
                 <td>{{ $post->title}}</td>
                 <td>{{ $post->getFormattedDate('created_at')}}</td>
                 <td><a href="{{ route ('admin.posts.show',$post->id)}}" class="btn btn-primary">Vai</a></td>
                 <td><a href="{{ route ('admin.posts.edit',$post->id)}}" class="btn btn-warning ml-2">Modifica</a></td>
                 <td>
-                    <form action="{{ route ('admin.posts.destroy', $post->id)}}" method="post">
+                    <form action="{{ route ('admin.posts.destroy', $post->id)}}" method="post" class="delete-button">
 
                         @csrf
                         @method('DELETE')
@@ -47,7 +48,22 @@
             @endforelse
         </tbody>
     </table>
+
     <footer class="d-flex justify-content-end">
         {{$posts->links()}}
     </footer>
 </div>
+@section( 'scripts')
+<script>
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(form => {
+        form.addEventListener('submit',function (e) {
+    e.preventDefaul();
+    const conf= confirm('Are you sure want to delete this post?');
+    if(conf)this.submit();
+        });
+    });
+</script>
+@endsection
+
+@endsection

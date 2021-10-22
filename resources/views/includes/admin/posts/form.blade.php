@@ -10,7 +10,7 @@
     <div class="form-group">
         <label for="title">Titolo</label>
         <input type="text" class="form-control" id="title" name="title" placeholder="scrivi" 
-        value="{{$post->title}}" required>
+        value="{{$post->title}}" >
 
     </div>
 

@@ -37629,9 +37629,10 @@ var render = function() {
             { staticClass: "card-body" },
             [
               _c("Header", { attrs: { title: _vm.title } }),
-              _vm._v(
-                "\n                    Sito in costruzione\n                "
-              )
+              _vm._v(" "),
+              _c("div", { staticClass: "carde-body" }, [
+                _vm._v("Sito in costruzione")
+              ])
             ],
             1
           )

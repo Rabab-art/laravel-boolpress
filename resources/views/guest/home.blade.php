@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    {{-- <div class="flex-center position-ref full-height">
+     <div class=" container d-flex justify-content-end">
         @if (Route::has('login'))
         <div class="top-right links">
             @auth
@@ -28,7 +28,7 @@
             @endauth
         </div>
     </div>
-    @endif --}}
+    @endif 
 
     <div id="root"> </div>
     <script src="{{ asset ('js/front.js')}}"></script>

@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-body">
                         <Header :title='title' />
-                        Sito in costruzione
+                        <div class="carde-body">Sito in costruzione</div> 
                     </div>
                 </div>
             </div>
@@ -22,6 +22,6 @@ export default {
    },
     components: {
         Header
-    }
+    },
 };
 </script>

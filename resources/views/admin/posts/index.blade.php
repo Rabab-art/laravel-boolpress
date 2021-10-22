@@ -16,6 +16,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col"> #</th>
                 <th scope="col"> Titolo</th>
                 <th scope="col"> Scritto il </th>
                 <th scope="col"> </th>
@@ -24,7 +25,7 @@
         <tbody>
             @forelse($posts as $post)
             <tr>
-                <td scope="row">{{$post->id}}#</td>
+                <th scope="row">{{$post->id}}#</th>
                 <td>{{ $post->title}}</td>
                 <td>{{ $post->getFormattedDate('created_at')}}</td>
                 <td><a href="{{ route ('admin.posts.show',$post->id)}}" class="btn btn-primary">Vai</a></td>
@@ -49,22 +50,22 @@
         </tbody>
     </table>
 
-    <footer class="d-flex justify-content-end">
-        {{$posts->links()}}
-    </footer>
-</div>
-@section( 'scripts')
-<script>
-    const deleteButtons = document.querySelectorAll('.delete-button');
-    deleteButtons.forEach(form => {
-        form.addEventListener('submit',function (e) {
-         e.preventDefault();
-        const conf= confirm('Are you sure want to delete this post?');
-        if(conf)this.submit();
+        <footer class="d-flex justify-content-end">
+            {{$posts->links() }}
+        </footer>
+    </div>
     
-        });
-    });
-</script>
-@endsection
+    @section( 'scripts')
+    <script>
+     const deleteButtons = document.querySelectorAll('.delete-button');
+     deleteButtons.forEach(form => {
+         form.addEventListener('submit',function (e) {
+              e.preventDefault();
+             const conf= confirm('Are you sure want to delete this post?');
+             if(conf)this.submit();
+         });
+     });
+     </script>
+    @endsection
 
 @endsection

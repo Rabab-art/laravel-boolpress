@@ -3,11 +3,12 @@
 @section( 'content')
     <div class="container">
         @if($errors->any())
-        <div class="alert alert-danger">
-            @foreach($errors -> any() as $error)
-                {{$error}}
-            @endforeach
-        </div>
+            <div class="alert alert-danger">
+                <ul>@foreach($errors -> all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach</ul>
+                
+            </div>
             
         @endif
 

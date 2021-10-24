@@ -38,16 +38,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-$request->validate([
-    'title'=>'required|string|unique:posts|min:3',
-    'content'=>'required|string',
-    'image'=>'string'
-],
-[
-    'required'=> 'Il campo :attribute è obbligatorio',
-    'min'=>'IL minimo dei caratteri per il campo :attribute è :min',
-    'title.unique'=>'Il titolo esiste già '
-]);
+        $request->validate(
+            [
+                'title' => 'required|string|unique:posts|min:3',
+                'content' => 'required|string',
+                'image' => 'string'
+            ],
+            [
+                'required' => 'Il campo :attribute è obbligatorio',
+                'min' => 'IL minimo dei caratteri per il campo :attribute è :min',
+                'title.unique' => 'Il titolo esiste già '
+            ]
+        );
 
         $data = $request->all();
         $post = new Post();
@@ -91,12 +93,12 @@ $request->validate([
      */
     public function update(Request $request, Post $post)
     {
-        $data=$request->all();
+        $data = $request->all();
         $post->fill($data);
-        $post->slug = Str::slug($post->title,'-');
+        $post->slug = Str::slug($post->title, '-');
 
         $post->save();
-        return redirect()->route('admin.posts.show',compact('post'));
+        return redirect()->route('admin.posts.show', compact('post'));
     }
 
     /**

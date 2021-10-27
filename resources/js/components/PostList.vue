@@ -3,46 +3,30 @@
         <h2>I mie post</h2>
         <Loader v-if="isLoading" />
         <div v-else>
+            <Pagination
+                :lastPage="pagination.lastPage"
+                :currentPage="pagination.currentPage"
+                @onPageChange="changePage"
+            />
             <PostCard v-for="post in posts" :key="post.id" :post="post" />
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li
-                        class="page-item"
-                        v-if="pagination.currentPage > 1"
-                        @click="getPosts(pagination.currentPage - 1)"
-                    >
-                        <a class="page-link">Precedente</a>
-                    </li>
-                    <li
-                        v-for="i in pagination.lastPage"
-                        :key="i"
-                        class="page-item" 
-                        :class="{active: pagination.currentPage === i}"
-                        @click="getPosts(i)"
-                    >
-                        <a class="page-link">{{ i }}</a>
-                    </li>
-                    <li
-                        class="page-item"
-                        v-if="pagination.lastPage > pagination.currentPage"
-                        @click="getPosts(pagination.currentPage + 1)"
-                    >
-                        <a class="page-link">Successivo</a>
-                    </li>
-                </ul>
-            </nav>
+            <Pagination
+                :lastPage="pagination.lastPage"
+                :currentPage="pagination.currentPage"
+            />
         </div>
     </section>
 </template>
 
 <script>
 import PostCard from "./Posts/PostCard.vue";
+import Pagination from "./Posts/Pagination.vue";
 import Loader from "./Loader.vue";
 export default {
     name: "PostList",
     components: {
         PostCard,
-        Loader
+        Loader,
+        Pagination
     },
     data() {
         return {
@@ -74,16 +58,15 @@ export default {
                 .then(() => {
                     this.isLoading = false;
                 });
+        },
+        changePage(page){
+            this.getPosts(page);
         }
     },
     created() {
         this.getPosts();
-    }
+    },
+    
 };
 </script>
 
-<style scoped>
-.page-item {
-    cursor: pointer;
-}
-</style>

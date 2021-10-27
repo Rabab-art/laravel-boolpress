@@ -2,13 +2,16 @@
     <div class="container">
         <Header :title="title" />
 
-        <main><Postlist /></main>
+        <main>
+            <PostList />
+        </main>
     </div>
 </template>
 
 <script>
+import PostList from "./PostList.vue";
 import Header from "./Header.vue";
-import Postlist from "./Posts/Postlist.vue";
+
 export default {
     name: "App",
     data() {
@@ -16,7 +19,7 @@ export default {
     },
     components: {
         Header,
-        Postlist
+        PostList,
     }
 };
 </script>

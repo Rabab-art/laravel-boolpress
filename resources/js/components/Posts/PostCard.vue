@@ -1,23 +1,42 @@
 <template>
-  <div class="card">
-  <div class="card-header">
-    Quote
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>A well-known quote, contained in a blockquote element.</p>
-      <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-    </blockquote>
-  </div>
-</div>
+    <div class="card my-3">
+        <div class="card-header">
+            {{ post.title }}
+        </div>
+        <div class="card-body">
+            <p>{{ post.content }}</p>
+            <blockquote class="blockquote mb-0">
+                <footer class="blockquote-footer d-flex justify-content-end">
+                    <time
+                        ><small>
+                            Pubblicato il:
+                            {{ getFormattedDate(post.created_at) }}
+                        </small></time
+                    >
+                </footer>
+            </blockquote>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
- name:"PostCard",
-}
+    name: "PostCard",
+    props: ["post"],
+    methods: {
+        getFormattedDate(date) {
+            const postDate = new Date(date);
+            let day = postDate.getDate();
+            let month = postDate.getMonth();
+            const year = postDate.getFullYear();
+
+            if (day < 10) day = "0" + day;
+            if (month < 10) month = "0" + month;
+
+            return `${day}/${month}/${year}`;
+        },
+    },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

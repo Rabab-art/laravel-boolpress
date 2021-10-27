@@ -19,16 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get ('/test', function(){
-return response()->json([
-'students'=>['Cristian','Ale', 'Dami', 'Rocco'],
-'teacher'=>'Marco',
-'total'=>32,
-]);
+Route::get('/test', function () {
+    return response()->json([
+        'students' => ['Cristian', 'Ale', 'Dami', 'Rocco'],
+        'teacher' => 'Marco',
+        'total' => 32,
+    ]);
 });
 
-Route::namespace( 'Api')->group(function(){
+Route::namespace('Api')->group(function () {
     // Route::resource('posts', 'PostController');
     Route::get('/posts', 'PostController@index');
 });
-

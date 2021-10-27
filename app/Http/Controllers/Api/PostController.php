@@ -15,9 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-       $posts = Post::all();
-       return response()->json($posts);
-
+       
+         $posts = Post::paginate(5);
+        return response()->json($posts);
 
     }
 
@@ -40,7 +40,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        // return response()->json($post);
+
+        return response()->json($post);
     }
 
     /**
@@ -65,7 +66,7 @@ class PostController extends Controller
     {
         Post::destroy($id);
 
-        return response();
+        return response('', 204);
         
     }
 }

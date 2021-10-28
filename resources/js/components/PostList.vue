@@ -12,6 +12,7 @@
             <Pagination
                 :lastPage="pagination.lastPage"
                 :currentPage="pagination.currentPage"
+                 @onPageChange="changePage"
             />
         </div>
     </section>
@@ -42,7 +43,7 @@ export default {
             axios
                 .get(`${this.baseUri}/api/posts?page=${page}`)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     //DISTRUCTURING
                     const { data, current_page, last_page } = res.data;
 

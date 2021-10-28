@@ -2012,6 +2012,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2036,8 +2037,8 @@ __webpack_require__.r(__webpack_exports__);
 
       this.isLoading = true;
       axios.get("".concat(this.baseUri, "/api/posts?page=").concat(page)).then(function (res) {
-        console.log(res.data); //DISTRUCTURING
-
+        // console.log(res.data);
+        //DISTRUCTURING
         var _res$data = res.data,
             data = _res$data.data,
             current_page = _res$data.current_page,
@@ -38639,7 +38640,8 @@ var render = function() {
                 attrs: {
                   lastPage: _vm.pagination.lastPage,
                   currentPage: _vm.pagination.currentPage
-                }
+                },
+                on: { onPageChange: _vm.changePage }
               })
             ],
             2
